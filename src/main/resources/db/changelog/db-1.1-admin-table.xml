@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="1.0" author="kathelan">
+
+        <createTable tableName="ADMIN">
+            <column name="ID" type="uuid">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="NAME" type="varchar2(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="EMAIL" type="varchar2(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="PASSWORD" type="varchar2(255)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="SUPER_ADMIN" type="boolean">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="IS_ACTIVE" type="boolean">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="CREATION_DATE" type="timestamptz">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="UPDATE_DATE" type="timestamptz">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="REMOVED" type="boolean">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0-2" author="kathelan">
+        <sql>
+            INSERT INTO ADMIN (id, name, email, password, super_admin, is_active, creation_date, update_date, removed) VALUES
+            ('C115AFCA-EE54-4AAA-A770-53A2A8412803','inwebit', 'inwebit@gmail.com',
+            '$2a$10$LhZcsCJw/Wy7BlMF8Q5UquRst95aWrhx1s3/wVwdswnMFMUjCsvUm', true, true,
+            '2019-09-01 00:00:00.000000', '2019-09-01 00:00:00.000000', false)
+        </sql>
+    </changeSet>
+</databaseChangeLog>

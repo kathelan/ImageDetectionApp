@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    name: image-detection-db
+    url: jdbc:postgresql://localhost:5432/image-detection-services-db
+    username: postgres
+    password: q1w2e3r4t5
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/changelog/db-changelog.xml
+  jpa:
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
+    open-in-view: false
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    name: test
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  liquibase:
+    change-log: classpath:db/changelog/db-changelog.xml
+  jpa:
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
+    open-in-view: false
